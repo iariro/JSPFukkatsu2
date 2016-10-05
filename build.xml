@@ -1,0 +1,92 @@
+<project default="deploy">
+
+	<!-- Fukkatsu2 build.xml -->
+
+	<property file="../../../../../build.properties" />
+
+	<condition property="have.tomcat">
+		<available file="${TOMCAT_SITE_HOME}" />
+	</condition>
+
+	<target name="zip">
+		<zip
+			destfile="${PDA_HOME}/Temp/JSPFukkatsu2.zip"
+			basedir=".."
+			includes="project/**"
+			excludes="**/*.class" />
+	</target>
+
+	<target name="deploy" if="have.tomcat">
+
+		<!-- Struts2 -->
+		<!-- <delete dir="${TOMCAT_SITE_HOME}/WEB-INF/classes/kumagai/Fukkatsu2/" /> -->
+		<!-- <delete dir="${TOMCAT_SITE_HOME}/fukkatsu2/" /> -->
+		<copy todir="${TOMCAT_SITE_HOME}/WEB-INF/classes">
+			<fileset dir="bin">
+				<include name="kumagai/Fukkatsu2/logic/*.class" />
+				<include name="kumagai/Fukkatsu2/struts2/*.class" />
+			</fileset>
+		</copy>
+
+		<copy todir="${TOMCAT_SITE_HOME}/fukkatsu2/">
+			<fileset dir="html">
+				<include name="**/*.html" />
+				<include name="**/*.jsp" />
+				<include name="**/*.js" />
+				<include name="**/*.css" />
+				<include name="**/*.png" />
+				<include name="**/*.jpg" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="codeguess">
+		<taskdef name="codeguess" classname="kumagai.codeguess.CodeGuessTask" classpath="${JAVAPROJECTCHECKER_LIB}" />
+		<codeguess targetfilepath="src/">
+			<exclude extension="java" code="UTF-8" />
+		</codeguess>
+		<codeguess targetfilepath="html/">
+			<exclude extension="jsp" code="UTF-8" />
+			<exclude extension="js" code="UTF-8" />
+			<exclude extension="jpg" />
+			<exclude extension="png" />
+		</codeguess>
+	</target>
+
+	<target name="javadoc">
+		<javadoc
+			destdir="../javadoc"
+			sourcepath="src"
+			encoding="utf-8"
+			classpath="${ANDROID_LIB};${SERVLET_LIB};${STRUTS_LIB};${STRUTS2_CORE_LIB};${STRUTS2_CONVENTION_LIB}">
+		</javadoc>
+	</target>
+
+	<target name="jspcheck">
+		<taskdef name="jspcheck" classname="kumagai.jspchecker.JspCheckerTask" classpath="${JSPCHECKER_LIB}" />
+		<jspcheck actionClassPath="src/kumagai/Fukkatsu2/struts2" jspFilePath="html"/>
+	</target>
+
+	<target name="restart" depends="deploy">
+		<exec executable="sc">
+			<arg line="stop tomcat6" />
+		</exec>
+		<sleep seconds="1"/>
+		<exec executable="sc">
+			<arg line="start tomcat6" />
+		</exec>
+	</target>
+
+	<target name="test">
+		<junit printsummary="yes">
+
+			<classpath path="${JUNIT_LIB}:../../../Tool/Sudoku/project/bin/" />
+			<formatter type="plain" usefile="no" />
+
+			<batchtest todir=".">
+				<fileset dir="../../../Tool/Sudoku/project/bin/" includes="kumagai/Sudoku/test/*Test*.class" />
+			</batchtest>
+		</junit>
+	</target>
+
+</project>
