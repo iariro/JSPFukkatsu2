@@ -41,7 +41,7 @@ public class JumonCompleTest
 
 		if (count % 100000 == 0)
 		{
-			System.out.println(jumon + message);
+			System.out.printf("%d:%s %s\n", count, jumon, message);
 		}
 
 		for (char ch : Jumon.characterSet)
@@ -54,10 +54,6 @@ public class JumonCompleTest
 	}
 
 	public void test()
-	{
-	}
-
-	public void _test()
 		throws IllegalCharacterException, InvalidItemException, InvalidJumonException
 	{
 		completeJumonRecursive(
