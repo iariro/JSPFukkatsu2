@@ -1,6 +1,6 @@
 package kumagai.Fukkatsu2.logic;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * プレイヤー情報。
@@ -46,7 +46,7 @@ public class Player
 			int index = itemBitArray.getAsInt(7 * i, 7);
 
 			if (index >= 1 && index <= 0x80 &&
-				(index % 0x40 >= 1) && (index % 0x40 < 0x3f))
+				(index % 0x40 >= 1) && (index % 0x40 <= 0x3f))
 			{
 				// アイテムの値は正しい。
 
