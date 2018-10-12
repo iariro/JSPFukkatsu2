@@ -1,8 +1,24 @@
 package kumagai.Fukkatsu2.struts2;
 
-import java.util.*;
-import org.apache.struts2.convention.annotation.*;
-import kumagai.Fukkatsu2.logic.*;
+import java.util.ArrayList;
+
+import javax.xml.bind.DatatypeConverter;
+
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.Result;
+
+import kumagai.Fukkatsu2.logic.CompressedGameDataBitArray;
+import kumagai.Fukkatsu2.logic.ExtendedGameDataBitArray;
+import kumagai.Fukkatsu2.logic.GameData;
+import kumagai.Fukkatsu2.logic.GameDataChecker;
+import kumagai.Fukkatsu2.logic.ItemAndEquipment;
+import kumagai.Fukkatsu2.logic.Jumon;
+import kumagai.Fukkatsu2.logic.Player;
+import kumagai.Fukkatsu2.logic.SamarutoriaMuunburukuName;
+import kumagai.Fukkatsu2.logic.サマルトリアの王子の経験値;
+import kumagai.Fukkatsu2.logic.ムーンブルクの王女の経験値;
+import kumagai.Fukkatsu2.logic.ローレシアの王子の経験値;
 
 /**
  * 復活の呪文生成アクション。
@@ -45,6 +61,7 @@ public class GenerateJumon2Action
 	public int [] muunburukuItem = new int [8];
 
 	public String [] jumonString;
+	public String hexdata;
 	public int jumonStyle;
 	public String [] errors;
 	public int errorsLength;
@@ -474,6 +491,9 @@ public class GenerateJumon2Action
 			new CompressedGameDataBitArray(extendedGameDataBitArray);
 		Jumon jumon =
 			new Jumon(compressedGameDataBitArray.getJumonCode());
+
+		byte [] plainArray = jumon.getPlainArray();
+		hexdata = DatatypeConverter.printHexBinary(plainArray);
 
 		String jumonString;
 

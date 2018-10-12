@@ -5,5 +5,7 @@
 	<classpathentry kind="var" path="JUNIT_LIB"/>
 	<classpathentry kind="var" path="STRUTS2_CONVENTION_LIB"/>
 	<classpathentry kind="var" path="STRUTS2_CORE_LIB"/>
+	<classpathentry kind="var" path="SERVLET_LIB"/>
+	<classpathentry kind="var" path="ANT_LIB"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

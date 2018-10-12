@@ -1,6 +1,6 @@
 package kumagai.Fukkatsu2.logic;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * ビット配列基底部。

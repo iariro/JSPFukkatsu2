@@ -1,7 +1,17 @@
 package kumagai.Fukkatsu2.struts2;
 
-import org.apache.struts2.convention.annotation.*;
-import kumagai.Fukkatsu2.logic.*;
+import javax.xml.bind.DatatypeConverter;
+
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
+
+import kumagai.Fukkatsu2.logic.CompressedGameDataBitArray;
+import kumagai.Fukkatsu2.logic.ExtendedGameDataBitArray;
+import kumagai.Fukkatsu2.logic.GameData;
+import kumagai.Fukkatsu2.logic.Jumon;
+import kumagai.Fukkatsu2.logic.SavePoint;
 
 /**
  * 呪文解析アクション。
@@ -18,6 +28,7 @@ public class AnalyzeJumon2Action
 	public String jumon;
 
 	public String [] jumonLines;
+	public String hexdata;
 	public String error;
 	public boolean excessBit;
 	public Exception exception;
@@ -54,8 +65,11 @@ public class AnalyzeJumon2Action
 
 			jumonLines = jumon.getJumonStringOnly().split("\r\n");
 
+			byte [] plainArray = jumon.getPlainArray();
+			hexdata = DatatypeConverter.printHexBinary(plainArray);
+
 			CompressedGameDataBitArray compressed =
-				new CompressedGameDataBitArray(jumon.getPlainArray());
+				new CompressedGameDataBitArray(plainArray);
 			ExtendedGameDataBitArray extendedGameDataBitArray =
 				new ExtendedGameDataBitArray(compressed);
 			gamedata = new GameData(extendedGameDataBitArray);

@@ -18,6 +18,7 @@
 				<s:iterator value="jumonString" id="line">
 					<s:property value="line" /><br>
 				</s:iterator>
+				<img src="/kumagai/fukkatsu2jumonbmp?hexdata=<s:property value='hexdata' />">
 				<br>
 
 				<h3>ゲームデータ</h3>

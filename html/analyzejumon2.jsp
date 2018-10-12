@@ -20,6 +20,8 @@
 			<s:iterator value="jumonLines">
 				<s:property /><br>
 			</s:iterator>
+			<br>
+			<img src="/kumagai/fukkatsu2jumonbmp?hexdata=<s:property value='hexdata' />">
 			</blockquote>
 
 			<blockquote>
