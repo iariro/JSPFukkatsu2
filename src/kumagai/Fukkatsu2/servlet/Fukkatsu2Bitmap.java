@@ -75,15 +75,18 @@ public class Fukkatsu2Bitmap
 
 		if ((plainArray.length * 6) > (72 + 24))
 		{
-			limitRo = 72 + 24 + 7 * extendedGameDataBitArray.getAsInt(72 + 20, 4);
+			int itemCount = extendedGameDataBitArray.getAsInt(72 + 20, 4);
+			limitRo = 72 + 24 + 7 * itemCount;
 		}
-		if ((plainArray.length * 6) > (72 + 80 + 24))
+		if (extendedGameDataBitArray.size() >= limitRo + 24)
 		{
-			limitSa = limitRo + 24 + 7 * extendedGameDataBitArray.getAsInt(limitRo + 20, 4);
+			int itemCount = extendedGameDataBitArray.getAsInt(limitRo + 1 + 20, 4);
+			limitSa = limitRo + 1 + 24 + 7 * itemCount;
 		}
-		if ((plainArray.length * 6) > (72 + 80 + 80 + 24))
+		if (extendedGameDataBitArray.size() >= limitSa + 24)
 		{
-			limitMu = limitSa + 24 + 7 * extendedGameDataBitArray.getAsInt(limitSa + 20, 4);
+			int itemCount = extendedGameDataBitArray.getAsInt(limitSa + 1 + 20, 4);
+			limitMu = limitSa + 1 + 24 + 7 * itemCount;
 		}
 
 		for (int x=0 ; x<plainArray.length ; x++)
@@ -93,7 +96,7 @@ public class Fukkatsu2Bitmap
 				int index = x * 6 + bit;
 
 				Color color;
-				if ((plainArray[x] & (1 << bit)) > 0)
+				if ((plainArray[x] &  (1 << (5 - bit))) > 0)
 				{
 					if (index < 72)
 					{
@@ -105,7 +108,8 @@ public class Fukkatsu2Bitmap
 					}
 					else if (index < limitSa)
 					{
-						if (gamedata.playerCollection.size() >= 2)
+						if (gamedata.playerCollection.size() >= 2 &&
+							gamedata.playerCollection.get(1).exist)
 						{
 							color = colorSa1;
 						}
@@ -116,7 +120,8 @@ public class Fukkatsu2Bitmap
 					}
 					else if (index < limitMu)
 					{
-						if (gamedata.playerCollection.size() >= 3)
+						if (gamedata.playerCollection.size() >= 3 &&
+							gamedata.playerCollection.get(2).exist)
 						{
 							color = colorMu1;
 						}
