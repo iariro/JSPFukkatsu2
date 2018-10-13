@@ -18,7 +18,21 @@
 				<s:iterator value="jumonString" id="line">
 					<s:property value="line" /><br>
 				</s:iterator>
+				<br>
 				<img src="/kumagai/fukkatsu2jumonbmp?hexdata=<s:property value='hexdata' />">
+
+				<br>
+				<button onclick="obj=document.getElementById('legend').style; obj.display=(obj.display=='none')?'block':'none';">凡例</button>
+				<div id="legend" style="display:none;background:lightgray;width:400px;">
+				<table style="font-size:80%;">
+					<tr><td bgcolor='#ffff55' width='30'></td><td width='150'>共通部</td></tr>
+					<tr><td bgcolor='#5555ff' width='30'></td><td width='150'>ローレシア</td></tr>
+					<tr><td bgcolor='#55ff55' width='30'></td><td width='150'>サマルトリア</td><td bgcolor='#225522' width='30'></td><td width='150'>サマルトリア不在</td></tr>
+					<tr><td bgcolor='#ff5555' width='30'></td><td width='150'>ムーンブルク</td><td bgcolor='#552222' width='30'></td><td width='150'>ムーンブルク不在</td></tr>
+					<tr><td bgcolor='#555555' width='30'></td><td width='150'>余剰</td></tr>
+				</table>
+				</div>
+
 				<br>
 
 				<h3>ゲームデータ</h3>

@@ -54,13 +54,14 @@ public class Fukkatsu2Bitmap
 		// 背景
 		graphics.setPaint(new Color(0xee, 0xee, 0xee));
 		graphics.fillRect(0, 0, width * 6 * plainArray.length, height);
-		Color colorCommon = new Color(0xcc, 0xcc, 0xcc);
+		Color colorCommon = new Color(0xff, 0xff, 0x55);
 		Color colorBack = new Color(0x33, 0x33, 0x33);
-		Color colorRo = new Color(0x77, 0x77, 0xff);
-		Color colorSa1 = new Color(0xaa, 0xff, 0xaa);
-		Color colorMu1 = new Color(0xff, 0xaa, 0xaa);
+		Color colorRo = new Color(0x55, 0x55, 0xff);
+		Color colorSa1 = new Color(0x55, 0xff, 0x55);
+		Color colorMu1 = new Color(0xff, 0x55, 0x55);
 		Color colorSa2 = new Color(0x22, 0x55, 0x22);
 		Color colorMu2 = new Color(0x55, 0x22, 0x22);
+		Color colorXX = new Color(0x55, 0x55, 0x55);
 
 		CompressedGameDataBitArray compressed =
 			new CompressedGameDataBitArray(plainArray);
@@ -72,17 +73,17 @@ public class Fukkatsu2Bitmap
 		int limitSa = 0;
 		int limitMu = 0;
 
-		if (gamedata.playerCollection.size() >= 1)
+		if ((plainArray.length * 6) > (72 + 24))
 		{
-			limitRo = 72 + 24 + 7 * gamedata.playerCollection.get(0).itemCollection.size();
+			limitRo = 72 + 24 + 7 * extendedGameDataBitArray.getAsInt(72 + 20, 4);
 		}
-		if (gamedata.playerCollection.size() >= 2)
+		if ((plainArray.length * 6) > (72 + 80 + 24))
 		{
-			limitSa = limitRo + 24 + 7 * gamedata.playerCollection.get(1).itemCollection.size();
+			limitSa = limitRo + 24 + 7 * extendedGameDataBitArray.getAsInt(limitRo + 20, 4);
 		}
-		if (gamedata.playerCollection.size() >= 3)
+		if ((plainArray.length * 6) > (72 + 80 + 80 + 24))
 		{
-			limitMu = limitSa + 24 + 7 * gamedata.playerCollection.get(2).itemCollection.size();
+			limitMu = limitSa + 24 + 7 * extendedGameDataBitArray.getAsInt(limitSa + 20, 4);
 		}
 
 		for (int x=0 ; x<plainArray.length ; x++)
@@ -91,7 +92,7 @@ public class Fukkatsu2Bitmap
 			{
 				int index = x * 6 + bit;
 
-				Color color = null;
+				Color color;
 				if ((plainArray[x] & (1 << bit)) > 0)
 				{
 					if (index < 72)
@@ -123,6 +124,10 @@ public class Fukkatsu2Bitmap
 						{
 							color = colorMu2;
 						}
+					}
+					else
+					{
+						color = colorXX;
 					}
 				}
 				else
