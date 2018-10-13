@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Player
 {
+	public boolean exist;
 	public int 経験値;
 	public ArrayList<ItemAndEquipment> itemCollection;
 
@@ -18,18 +19,21 @@ public class Player
 	{
 		itemCollection = new ArrayList<ItemAndEquipment>();
 
+		this.exist = true;
 		this.経験値 = 経験値;
 	}
 
 	/**
 	 * 経験値，アイテム情報を受け、プレイヤー情報を構築。
+	 * @param exist true=存在する／false=しない
 	 * @param 経験値 経験値
 	 * @param itemCount アイテムの個数
 	 * @param itemBitArray アイテム情報を内容とするビット配列
 	 */
-	public Player(int 経験値, int itemCount, JumonBitArray itemBitArray)
+	public Player(boolean exist, int 経験値, int itemCount, JumonBitArray itemBitArray)
 		throws InvalidItemException
 	{
+		this.exist = exist;
 		this.経験値 = 経験値;
 
 		itemCollection = new ArrayList<ItemAndEquipment>();
@@ -38,7 +42,10 @@ public class Player
 		{
 			// アイテムは多過ぎる。
 
-			throw new InvalidItemException(itemCount);
+			if (exist)
+			{
+				throw new InvalidItemException(itemCount);
+			}
 		}
 
 		for (int i=0 ; i<itemCount ; i++)

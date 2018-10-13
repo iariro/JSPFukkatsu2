@@ -1,7 +1,13 @@
 package kumagai.Fukkatsu2.struts2;
 
-import java.util.*;
-import kumagai.Fukkatsu2.logic.*;
+import java.util.ArrayList;
+
+import kumagai.Fukkatsu2.logic.ExperienceTable;
+import kumagai.Fukkatsu2.logic.GameData;
+import kumagai.Fukkatsu2.logic.SamarutoriaMuunburukuName;
+import kumagai.Fukkatsu2.logic.サマルトリアの王子の経験値;
+import kumagai.Fukkatsu2.logic.ムーンブルクの王女の経験値;
+import kumagai.Fukkatsu2.logic.ローレシアの王子の経験値;
 
 /**
  * JSP表示用のキャラクターデータのコレクション。
@@ -29,6 +35,7 @@ class PayerForJspCollection
 
 		add(
 			new PayerForJsp(
+				gamedata.playerCollection.get(0).exist,
 				"ローレシアの王子",
 				ローレシアの王子の名前,
 				gamedata.playerCollection.get(0).経験値,
@@ -41,6 +48,7 @@ class PayerForJspCollection
 
 			add(
 				new PayerForJsp(
+					gamedata.playerCollection.get(1).exist,
 					"サマルトリアの王子",
 					samarutoriaMuunburukuName.サマルトリアの王子の名前,
 					gamedata.playerCollection.get(1).経験値,
@@ -54,6 +62,7 @@ class PayerForJspCollection
 
 			add(
 				new PayerForJsp(
+					gamedata.playerCollection.get(2).exist,
 					"ムーンブルクの王女",
 					samarutoriaMuunburukuName.ムーンブルクの王女の名前,
 					gamedata.playerCollection.get(2).経験値,

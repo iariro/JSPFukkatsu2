@@ -1,10 +1,15 @@
 package kumagai.Fukkatsu2.logictest;
 
-import junit.framework.*;
-import kumagai.Fukkatsu2.logic.*;
+import kumagai.Fukkatsu2.logic.CompressedGameDataBitArray;
+import kumagai.Fukkatsu2.logic.ExtendedGameDataBitArray;
+import kumagai.Fukkatsu2.logic.GameData;
+import kumagai.Fukkatsu2.logic.IllegalCharacterException;
+import kumagai.Fukkatsu2.logic.InvalidItemException;
+import kumagai.Fukkatsu2.logic.InvalidJumonException;
+import kumagai.Fukkatsu2.logic.Jumon;
 
 public class JumonCompleTest
-	extends TestCase
+	//extends TestCase
 {
 	int count = 0;
 

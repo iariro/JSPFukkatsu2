@@ -1,8 +1,17 @@
 package kumagai.Fukkatsu2.logictest;
 
-import java.util.*;
-import junit.framework.*;
-import kumagai.Fukkatsu2.logic.*;
+import java.util.List;
+
+import junit.framework.TestCase;
+import kumagai.Fukkatsu2.logic.CompressedGameDataBitArray;
+import kumagai.Fukkatsu2.logic.ExtendedGameDataBitArray;
+import kumagai.Fukkatsu2.logic.GameData;
+import kumagai.Fukkatsu2.logic.IllegalCharacterException;
+import kumagai.Fukkatsu2.logic.InvalidItemException;
+import kumagai.Fukkatsu2.logic.InvalidJumonException;
+import kumagai.Fukkatsu2.logic.ItemAndEquipment;
+import kumagai.Fukkatsu2.logic.Jumon;
+import kumagai.Fukkatsu2.logic.Player;
 
 public class JumonTest
 	extends TestCase
@@ -70,7 +79,7 @@ public class JumonTest
 		assertEquals(false, gamedata.月の紋章);
 		assertEquals(false, gamedata.星の紋章);
 		assertEquals(true, gamedata.太陽の紋章);
-		assertEquals(1, playerCollection.size());
+		assertEquals(3, playerCollection.size());
 		assertEquals(942197, playerCollection.get(0).経験値);
 		assertEquals(0, playerCollection.get(0).itemCollection.size());
 		assertEquals(
@@ -416,7 +425,7 @@ public class JumonTest
 		List<Player> playerCollection = gamedata.playerCollection;
 
 		assertEquals("こはよし", gamedata.getローレシアの王子の名前());
-		assertEquals(1, playerCollection.size());
+		assertEquals(2, playerCollection.size());
 		assertEquals(57412, playerCollection.get(0).経験値);
 	}
 }

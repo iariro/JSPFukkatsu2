@@ -1,6 +1,7 @@
 package kumagai.Fukkatsu2.logic;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 最大314ビットのゲームデータビット配列。
@@ -557,12 +558,16 @@ public class ExtendedGameDataBitArray
 		int itemCount;
 		boolean next = true;
 
-		for (int i=0 ; i<3 && next ; i++)
+		for (int i=0 ; i<3 ; i++)
 		{
 			if (offset + 20 + 4 > size())
 			{
 				// ビット数が足りない。
 
+				if (!next)
+				{
+					break;
+				}
 				throw
 					new InvalidJumonException(
 						"少なくとももう" +
@@ -577,6 +582,10 @@ public class ExtendedGameDataBitArray
 			{
 				// ビット数が足りない。
 
+				if (!next)
+				{
+					break;
+				}
 				throw
 					new InvalidJumonException(
 						String.format(
@@ -588,6 +597,7 @@ public class ExtendedGameDataBitArray
 
 			playerCollection.add(
 				new Player(
+					next,
 					getAsInt(offset, 16) +
 						(getAsInt(offset + 16, 4) << 16),
 					itemCount,
@@ -599,7 +609,7 @@ public class ExtendedGameDataBitArray
 			{
 				// ２人目まで。
 
-				next = get(offset);
+				next &= get(offset);
 
 				offset++;
 			}

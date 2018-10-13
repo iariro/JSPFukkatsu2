@@ -92,33 +92,69 @@
 
 			<s:iterator value="players">
 				<h2><s:property value="role" /></h2>
-				<table>
-				<tr>
-					<td rowspan="3" style="border-bottom:0px;">
-					<s:if test='%{role.equals("ローレシアの王子")}'><img src="cha1.png"></s:if>
-					<s:if test='%{role.equals("サマルトリアの王子")}'><img src="cha2.png"></s:if>
-					<s:if test='%{role.equals("ムーンブルクの王女")}'><img src="cha3.png"></s:if>
-					</td>
-					<th>名前</th><td><s:property value="%{name}" /></td>
-				</tr>
-				<tr><th>経験値</th><td><s:property value="experience" /></td></tr>
-				<tr><th>レベル</th><td><s:property value="level" /></td></tr>
-				</table>
-				<h3>アイテム</h3>
-				<table>
-				<tr>
-				<s:iterator value="items1">
-					<td style='width: 10px;'><s:if test="equipment">E</s:if><s:else></s:else></td>
-					<td style='width: 120px;'><s:property value="item.name" /></td>
-				</s:iterator>
-				</tr>
-				<tr>
-				<s:iterator value="items2">
-					<td style='width: 10px;'><s:if test="equipment">E</s:if><s:else></s:else></td>
-					<td style='width: 120px;'><s:property value="item.name" /></td>
-				</s:iterator>
-				<tr>
-				</table>
+				<s:if test="%{exist}">
+					<table>
+					<tr>
+						<td rowspan="3" style="border-bottom:0px;">
+						<s:if test='%{role.equals("ローレシアの王子")}'><img src="cha1.png"></s:if>
+						<s:if test='%{role.equals("サマルトリアの王子")}'><img src="cha2.png"></s:if>
+						<s:if test='%{role.equals("ムーンブルクの王女")}'><img src="cha3.png"></s:if>
+						</td>
+						<th>名前</th><td><s:property value="%{name}" /></td>
+					</tr>
+					<tr><th>経験値</th><td><s:property value="experience" /></td></tr>
+					<tr><th>レベル</th><td><s:property value="level" /></td></tr>
+					</table>
+					<h3>アイテム</h3>
+					<table>
+					<tr>
+					<s:iterator value="items1">
+						<td style='width: 10px;'><s:if test="equipment">E</s:if><s:else></s:else></td>
+						<td style='width: 120px;'><s:property value="item.name" /></td>
+					</s:iterator>
+					</tr>
+					<tr>
+					<s:iterator value="items2">
+						<td style='width: 10px;'><s:if test="equipment">E</s:if><s:else></s:else></td>
+						<td style='width: 120px;'><s:property value="item.name" /></td>
+					</s:iterator>
+					<tr>
+					</table>
+				</s:if>
+				<s:else>
+					<div style='background-color:lightgray;'>
+					<table>
+					<tr>
+						<td rowspan="3" style="border-bottom:0px;">
+						<s:if test='%{role.equals("ローレシアの王子")}'><img src="cha1.png"></s:if>
+						<s:if test='%{role.equals("サマルトリアの王子")}'><img src="cha2.png"></s:if>
+						<s:if test='%{role.equals("ムーンブルクの王女")}'><img src="cha3.png"></s:if>
+						</td>
+						<th>名前</th><td><s:property value="%{name}" /></td>
+					</tr>
+					<tr><th>経験値</th><td><s:property value="experience" /></td></tr>
+					<tr><th>レベル</th><td><s:property value="level" /></td></tr>
+					</table>
+					<h3>アイテム</h3>
+					<table>
+					<tr>
+					<s:iterator value="items1">
+						<td style='width: 10px;'><s:if test="equipment">E</s:if><s:else></s:else></td>
+						<td style='width: 120px;'><s:property value="item.name" /></td>
+					</s:iterator>
+					</tr>
+					<tr>
+					<s:iterator value="items2">
+						<td style='width: 10px;'><s:if test="equipment">E</s:if><s:else></s:else></td>
+						<td style='width: 120px;'><s:property value="item.name" /></td>
+					</s:iterator>
+					<tr>
+					</table>
+					<s:if test="%{memo != null}">
+					<font color="red"><s:property value="memo" /></font>
+					</s:if>
+					</div>
+				</s:else>
 			</s:iterator>
 
 		</div>
