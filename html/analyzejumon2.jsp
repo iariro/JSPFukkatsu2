@@ -96,13 +96,13 @@
 				<tr>
 				<s:iterator value="items1">
 					<td style='width: 10px;'><s:if test="equipment">E</s:if><s:else></s:else></td>
-					<td style='width: 100px;'><s:property value="item.name" /></td>
+					<td style='width: 120px;'><s:property value="item.name" /></td>
 				</s:iterator>
 				</tr>
 				<tr>
 				<s:iterator value="items2">
 					<td style='width: 10px;'><s:if test="equipment">E</s:if><s:else></s:else></td>
-					<td style='width: 100px;'><s:property value="item.name" /></td>
+					<td style='width: 120px;'><s:property value="item.name" /></td>
 				</s:iterator>
 				<tr>
 				</table>
