@@ -68,24 +68,41 @@ public class Fukkatsu2Bitmap
 			new ExtendedGameDataBitArray(compressed);
 		GameData gamedata = new GameData(extendedGameDataBitArray);
 
+		int limitRo = 0;
+		int limitSa = 0;
+		int limitMu = 0;
+
+		if (gamedata.playerCollection.size() >= 1)
+		{
+			limitRo = 72 + 24 + 7 * gamedata.playerCollection.get(0).itemCollection.size();
+		}
+		if (gamedata.playerCollection.size() >= 2)
+		{
+			limitSa = limitRo + 24 + 7 * gamedata.playerCollection.get(1).itemCollection.size();
+		}
+		if (gamedata.playerCollection.size() >= 3)
+		{
+			limitMu = limitSa + 24 + 7 * gamedata.playerCollection.get(2).itemCollection.size();
+		}
+
 		for (int x=0 ; x<plainArray.length ; x++)
 		{
 			for (int bit=0 ; bit<6 ; bit++)
 			{
 				int index = x * 6 + bit;
 
-				Color color;
+				Color color = null;
 				if ((plainArray[x] & (1 << bit)) > 0)
 				{
 					if (index < 72)
 					{
 						color = colorCommon;
 					}
-					else if (index < 152)
+					else if (index < limitRo)
 					{
 						color = colorRo;
 					}
-					else if (index < 232)
+					else if (index < limitSa)
 					{
 						if (gamedata.playerCollection.size() >= 2)
 						{
@@ -96,7 +113,7 @@ public class Fukkatsu2Bitmap
 							color = colorSa2;
 						}
 					}
-					else // if (index < 39)
+					else if (index < limitMu)
 					{
 						if (gamedata.playerCollection.size() >= 3)
 						{
