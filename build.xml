@@ -2,6 +2,20 @@
 
 	<!-- Fukkatsu2 build.xml -->
 
+	<!--
+
+	<servlet>
+		<servlet-name>fukkatsu2jumonbmp</servlet-name>
+		<servlet-class>kumagai.Fukkatsu2.servlet.Fukkatsu2BmpServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>fukkatsu2jumonbmp</servlet-name>
+		<url-pattern>/fukkatsu2jumonbmp</url-pattern>
+	</servlet-mapping>
+
+	-->
+
 	<property file="../../../../../build.properties" />
 
 	<condition property="have.tomcat">
