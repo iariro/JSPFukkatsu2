@@ -9,6 +9,7 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 
 import kumagai.Fukkatsu2.logic.CompressedGameDataBitArray;
+import kumagai.Fukkatsu2.logic.EncountZero;
 import kumagai.Fukkatsu2.logic.ExtendedGameDataBitArray;
 import kumagai.Fukkatsu2.logic.GameData;
 import kumagai.Fukkatsu2.logic.GameDataChecker;
@@ -63,6 +64,8 @@ public class GenerateJumon2Action
 	public String [] jumonString;
 	public String hexdata;
 	public int jumonStyle;
+	public String encountZero;
+
 	public String [] errors;
 	public int errorsLength;
 
@@ -485,12 +488,32 @@ public class GenerateJumon2Action
 			}
 		}
 
-		ExtendedGameDataBitArray extendedGameDataBitArray =
-			new ExtendedGameDataBitArray(gameData);
-		CompressedGameDataBitArray compressedGameDataBitArray =
-			new CompressedGameDataBitArray(extendedGameDataBitArray);
-		Jumon jumon =
-			new Jumon(compressedGameDataBitArray.getJumonCode());
+		CompressedGameDataBitArray compressedGameDataBitArray = null;
+
+		if ((encountZero != null) && (encountZero.length() > 0))
+		{
+			// エンカウントゼロ加工指定あり
+
+			compressedGameDataBitArray = EncountZero.getEncountZero(gameData);
+			if (compressedGameDataBitArray == null)
+			{
+				// エンカウントゼロ加工失敗
+
+				errors.add("エンカウントゼロ加工失敗");
+			}
+		}
+
+		if (compressedGameDataBitArray == null)
+		{
+			// エンカウントゼロ指定なしまたは失敗。普通はこっち。
+
+			ExtendedGameDataBitArray extendedGameDataBitArray =
+				new ExtendedGameDataBitArray(gameData);
+			compressedGameDataBitArray =
+				new CompressedGameDataBitArray(extendedGameDataBitArray);
+		}
+
+		Jumon jumon = new Jumon(compressedGameDataBitArray.getJumonCode());
 
 		byte [] plainArray = jumon.getPlainArray();
 		hexdata = DatatypeConverter.printHexBinary(plainArray);

@@ -142,6 +142,15 @@
 			</div>
 			</div>
 
+			<h2><span class=title>細工</span></h2>
+			<div class=body>
+			<div class=section>
+
+			<input type="checkbox" name="encountZero" checked="checked" />エンカウントゼロ
+
+			</div>
+			</div>
+
 			<s:submit value="生成" />
 
 			</s:form>

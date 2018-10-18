@@ -23,7 +23,7 @@
 
 				<br>
 				<button onclick="obj=document.getElementById('legend').style; obj.display=(obj.display=='none')?'block':'none';">凡例</button>
-			<div id="legend" style="display:none;background:#eeeeee;width:400px;border-style:dashed;border-width:thin;">
+				<div id="legend" style="display:none;background:#eeeeee;width:400px;border-style:dashed;border-width:thin;">
 				<table style="font-size:80%;">
 					<tr><td bgcolor='#ffff55' width='30'></td><td width='150'>共通部</td></tr>
 					<tr><td bgcolor='#5555ff' width='30'></td><td width='150'>ローレシア</td></tr>
@@ -53,6 +53,9 @@
 				</s:if>
 				<br>
 
+				<s:if test="encountZero.length()>0">
+					<span class='highlight'>エンカウントゼロ呪文</span>
+				</s:if>
 				<s:if test="errorsLength>0">
 					<h3>エラー</h3>
 					<ul>
