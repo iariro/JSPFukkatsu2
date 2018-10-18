@@ -106,7 +106,7 @@
 			<s:select name="samarutoriaItem6" list="samarutoriaItems.items" listKey="index" listValue="name" />
 			<s:select name="samarutoriaItem7" list="samarutoriaItems.items" listKey="index" listValue="name" />
 			<s:select name="samarutoriaItem8" list="samarutoriaItems.items" listKey="index" listValue="name" />
-			
+
 			</div>
 			</div>
 
@@ -146,7 +146,7 @@
 			<div class=body>
 			<div class=section>
 
-			<input type="checkbox" name="encountZero" checked="checked" />エンカウントゼロ
+			<input type="checkbox" name="encountZero" />エンカウントゼロ
 
 			</div>
 			</div>
