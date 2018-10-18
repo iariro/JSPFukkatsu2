@@ -9,7 +9,6 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 
 import kumagai.Fukkatsu2.logic.CompressedGameDataBitArray;
-import kumagai.Fukkatsu2.logic.EncountZero;
 import kumagai.Fukkatsu2.logic.ExtendedGameDataBitArray;
 import kumagai.Fukkatsu2.logic.GameData;
 import kumagai.Fukkatsu2.logic.GameDataChecker;
@@ -494,7 +493,7 @@ public class GenerateJumon2Action
 		{
 			// エンカウントゼロ加工指定あり
 
-			compressedGameDataBitArray = EncountZero.getEncountZero(gameData);
+			compressedGameDataBitArray = gameData.trickEncountZero();
 			if (compressedGameDataBitArray == null)
 			{
 				// エンカウントゼロ加工失敗

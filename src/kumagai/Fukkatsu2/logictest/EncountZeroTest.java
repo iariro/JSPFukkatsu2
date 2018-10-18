@@ -1,7 +1,12 @@
 package kumagai.Fukkatsu2.logictest;
 
-import junit.framework.*;
-import kumagai.Fukkatsu2.logic.*;
+import junit.framework.TestCase;
+import kumagai.Fukkatsu2.logic.CompressedGameDataBitArray;
+import kumagai.Fukkatsu2.logic.GameData;
+import kumagai.Fukkatsu2.logic.IllegalCharacterException;
+import kumagai.Fukkatsu2.logic.ItemAndEquipment;
+import kumagai.Fukkatsu2.logic.Jumon;
+import kumagai.Fukkatsu2.logic.Player;
 
 public class EncountZeroTest
 	extends TestCase
@@ -13,8 +18,7 @@ public class EncountZeroTest
 
 		gamedata.setローレシアの王子の名前("えにくす");
 
-		CompressedGameDataBitArray compressed =
-			EncountZero.getEncountZero(gamedata);
+		CompressedGameDataBitArray compressed = gamedata.trickEncountZero();
 
 		Jumon jumon = new Jumon(compressed.getJumonCode());
 
@@ -36,8 +40,7 @@ public class EncountZeroTest
 		rooreshia.itemCollection.add(new ItemAndEquipment(1));
 		rooreshia.itemCollection.add(new ItemAndEquipment(2));
 
-		CompressedGameDataBitArray compressed =
-			EncountZero.getEncountZero(gamedata);
+		CompressedGameDataBitArray compressed = gamedata.trickEncountZero();
 
 		Jumon jumon = new Jumon(compressed.getJumonCode());
 
@@ -64,8 +67,7 @@ public class EncountZeroTest
 
 		samarutoria.itemCollection.add(new ItemAndEquipment(3));
 
-		CompressedGameDataBitArray compressed =
-			EncountZero.getEncountZero(gamedata);
+		CompressedGameDataBitArray compressed = gamedata.trickEncountZero();
 
 		Jumon jumon = new Jumon(compressed.getJumonCode());
 
@@ -95,8 +97,7 @@ public class EncountZeroTest
 		gamedata.playerCollection.add(muunburuku);
 		muunburuku.itemCollection.add(new ItemAndEquipment(4, true));
 
-		CompressedGameDataBitArray compressed =
-			EncountZero.getEncountZero(gamedata);
+		CompressedGameDataBitArray compressed = gamedata.trickEncountZero();
 
 		Jumon jumon = new Jumon(compressed.getJumonCode());
 

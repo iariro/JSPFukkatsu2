@@ -47,6 +47,7 @@ public class AnalyzeJumon2Action
 	public boolean 星の紋章;
 	public boolean 太陽の紋章;
 	public PayerForJspCollection players;
+	public boolean encountZero;
 
 	/**
 	 * 呪文解析を行う。
@@ -81,6 +82,7 @@ public class AnalyzeJumon2Action
 
 				error = "チェックサムエラー";
 			}
+			encountZero = compressed.isEncountZero();
 
 			excessBit = extendedGameDataBitArray.hasExcessBit();
 		}

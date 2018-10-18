@@ -1,12 +1,111 @@
 package kumagai.Fukkatsu2.logic;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * ゲームデータ。
  */
 public class GameData
 {
+	/**
+	 * エンカウントゼロ呪文生成用にバリエーション値とゴールドを加工。
+	 * @return 加工済みデータ
+	 */
+	public CompressedGameDataBitArray trickEncountZero()
+		throws IllegalCharacterException
+	{
+		int variation = (バリエーション & 0x1) + 10;
+		int gold = ゴールド;
+
+		ExtendedGameDataBitArray extended = new ExtendedGameDataBitArray(this);
+		CompressedGameDataBitArray compressed = new CompressedGameDataBitArray(extended);
+
+		compressed.set(0, true);
+		compressed.set(1, false);
+		compressed.set(2, false);
+		compressed.set(3, false);
+		compressed.set(4, true);
+
+		compressed.setInt(56, 0, 2, 0);
+		compressed.setInt(66, 0, 4, 0);
+
+		boolean goldDirection = false;
+
+		int inc = gold;
+		int dec = gold - 1;
+
+		for (int count=0; count<100000 ; count++)
+		{
+			compressed.setInt(32, gold, 7, 0);
+			compressed.setInt(16, gold, 15, 8);
+
+			compressed.set(48, (variation & 0x1) > 0);
+
+			int checksum = compressed.getEncountZeroChecksum();
+
+			if ((checksum & 0xfe3f) == 0xac3f)
+			{
+				// エンカウントゼロ条件に合致した。
+
+				compressed.set( 2, (checksum & 0x400) > 0);
+				compressed.set( 3, (checksum & 0x200) > 0);
+				compressed.set(56, (checksum & 0x100) > 0);
+				compressed.set(57, (checksum & 0x80) > 0);
+				compressed.set(58, (checksum & 0x40) > 0);
+				compressed.set(66, (checksum & 0x20) > 0);
+				compressed.set(67, (checksum & 0x10) > 0);
+				compressed.set(68, (checksum & 0x8) > 0);
+				compressed.set(69, (checksum & 0x4) > 0);
+				compressed.set(70, (checksum & 0x2) > 0);
+				compressed.set(71, (checksum & 0x1) > 0);
+
+				return compressed;
+			}
+			else
+			{
+				// エンカウントゼロ条件に合致しない。
+
+				variation = 21 - variation;
+
+				if (variation == 11)
+				{
+					if (goldDirection)
+					{
+						// 増やす番。
+
+						if (gold < 65535)
+						{
+							// 範囲内。
+
+							gold = inc;
+							inc++;
+						}
+						goldDirection = false;
+					}
+					else
+					{
+						// 減らす番。
+
+						if (gold > 0)
+						{
+							// 範囲内。
+
+							gold = dec;
+							dec--;
+						}
+						else
+						{
+							//gold = 65535;
+						}
+						goldDirection = true;
+					}
+				}
+			}
+		}
+
+		return null;
+	}
+
 	public int セーブポイント;
 	public String ローレシアの王子の名前_;
 	public int ゴールド;
