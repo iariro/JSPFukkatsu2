@@ -29,7 +29,7 @@
 					<tr><td bgcolor='#5555ff' width='30'></td><td width='150'>ローレシア</td></tr>
 					<tr><td bgcolor='#55ff55' width='30'></td><td width='150'>サマルトリア</td><td bgcolor='#225522' width='30'></td><td width='150'>サマルトリア不在</td></tr>
 					<tr><td bgcolor='#ff5555' width='30'></td><td width='150'>ムーンブルク</td><td bgcolor='#552222' width='30'></td><td width='150'>ムーンブルク不在</td></tr>
-					<tr><td></td><td bgcolor='#555555' width='30'></td><td width='150'>余剰</td></tr>
+					<tr><td></td><td></td><td bgcolor='#555555' width='30'></td><td width='150'>余剰</td></tr>
 				</table>
 				</div>
 
