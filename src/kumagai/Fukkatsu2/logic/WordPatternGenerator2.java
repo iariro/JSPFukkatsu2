@@ -1,6 +1,6 @@
 package kumagai.Fukkatsu2.logic;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * 指定の文字列パターンの組み合わせを作成する。
@@ -13,7 +13,7 @@ public class WordPatternGenerator2
 	 * 指定の文字列パターンの組み合わせを作成する。
 	 * @param words 文字列パターン
 	 */
-	public WordPatternGenerator2(ArrayList<String> words)
+	public WordPatternGenerator2(String [] words)
 	{
 		generateRecursive(words, 0, new String());
 	}
@@ -25,13 +25,13 @@ public class WordPatternGenerator2
 	 * @param phrase フレーズ
 	 */
 	private void generateRecursive
-		(ArrayList<String> words, int depth, String phrase)
+		(String [] words, int depth, String phrase)
 	{
-		if (depth < words.size())
+		if (depth < words.length)
 		{
 			// 範囲内。
 
-			for (String word : words.get(depth).split("\\|"))
+			for (String word : words[depth].split("\\|"))
 			{
 				generateRecursive(words, depth + 1, phrase + word);
 			}

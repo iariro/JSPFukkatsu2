@@ -20,6 +20,7 @@
 				<ul>
 				<li><a href="generatejumon1.action">呪文生成</a><br>
 				<li><a href="analyzejumon1.action">呪文解析</a><br>
+				<li><a href="fabricatejumon1.action">呪文ねつ造</a><br>
 				</ul>
 			</div>
 		</div>

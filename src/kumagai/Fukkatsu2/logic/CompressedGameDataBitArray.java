@@ -198,13 +198,6 @@ public class CompressedGameDataBitArray
 			{
 				if (get(charNum * 6 + 4) | get(charNum * 6 + 5))
 				{
-					System.out.printf(
-						"[%d]=%s [%d]=%s\n",
-						charNum * 6 + 4,
-						get(charNum * 6 + 4),
-						charNum * 6 + 5,
-						get(charNum * 6 + 5));
-
 					return false;
 				}
 			}
@@ -216,13 +209,6 @@ public class CompressedGameDataBitArray
 			{
 				if (get(charNum * 6 + 2) | get(charNum * 6 + 3))
 				{
-					System.out.printf(
-						"[%d]=%s [%d]=%s\n",
-						charNum * 6 + 2,
-						get(charNum * 6 + 2),
-						charNum * 6 + 3,
-						get(charNum * 6 + 3));
-
 					return false;
 				}
 			}

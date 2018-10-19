@@ -176,6 +176,13 @@ public class GameData
 		{
 			Player player = playerCollection.get(i);
 
+			if (!player.exist)
+			{
+				// 存在しない
+
+				continue;
+			}
+
 			Item [] equip = new Item [3];
 
 			for (ItemAndEquipment item : player.itemCollection)
@@ -190,11 +197,6 @@ public class GameData
 					if (item.equipment)
 					{
 						// 装備している。
-
-						System.out.printf(
-							"%dが%sを装備しています",
-							i,
-							item.item.name);
 
 						valid =
 							String.format(

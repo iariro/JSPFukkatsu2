@@ -1,7 +1,8 @@
 package kumagai.Fukkatsu2.logictest;
 
-import java.util.*;
-import junit.framework.*;
+import java.util.ArrayList;
+
+import junit.framework.TestCase;
 import kumagai.Fukkatsu2.logic.WordPatternGenerator2;
 
 public class WordPatternGenerator2Test
@@ -17,11 +18,13 @@ public class WordPatternGenerator2Test
 
 	public void test1()
 	{
-		ArrayList<String> list = new ArrayList<String>();
-
-		list.add("aaa");
-		list.add("bbb|ccc");
-		list.add("111|222");
+		String [] list =
+			new String []
+			{
+				"aaa",
+				"bbb|ccc",
+				"111|222"
+			};
 
 		ArrayList<String> phrases = new WordPatternGenerator2(list);
 

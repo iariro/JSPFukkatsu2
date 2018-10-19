@@ -1,8 +1,17 @@
 package kumagai.Fukkatsu2.logictest;
 
-import java.util.*;
-import junit.framework.*;
-import kumagai.Fukkatsu2.logic.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import junit.framework.TestCase;
+import kumagai.Fukkatsu2.logic.CompressedGameDataBitArray;
+import kumagai.Fukkatsu2.logic.ExtendedGameDataBitArray;
+import kumagai.Fukkatsu2.logic.GameData;
+import kumagai.Fukkatsu2.logic.IllegalCharacterException;
+import kumagai.Fukkatsu2.logic.InvalidItemException;
+import kumagai.Fukkatsu2.logic.InvalidJumonException;
+import kumagai.Fukkatsu2.logic.Jumon;
+import kumagai.Fukkatsu2.logic.JumonGenerator;
 
 public class GenerateJumonTestCore
 	extends TestCase
@@ -11,7 +20,19 @@ public class GenerateJumonTestCore
 	{
 	}
 
-	protected void _test(String phrase0)
+	protected void _test(String phrase)
+	{
+		ArrayList<String> phrases = new ArrayList<>();
+		phrases.add(phrase);
+		ArrayList<String> jumonList = JumonGenerator.generateWithExtraCharacter(phrases);
+
+		for (String jumon : jumonList)
+		{
+			System.out.println(jumon);
+		}
+	}
+
+	protected void generateInline(String phrase0)
 	{
 		Calendar start = Calendar.getInstance();
 
