@@ -5,41 +5,41 @@ public class GenerateJumonTest
 {
 	public void test1()
 	{
-		_test("ゆうていみやおうきむこうほりいゆうじとりやまあきら");
+		_test("ゆうていみやおうきむこうほりいゆうじとりやまあきら", false);
 	}
 
-	public void test2()
+	public void _test2()
 	{
-		_test("ゆうしやえそさつくすぶきにいまこそたびたつすいそうがくらいぶいくよ");
+		_test("ゆうしやえそさつくすぶきにいまこそたびたつすいそうがくらいぶいくよ", false);
 	}
 
-	public void test3()
+	public void _test3()
 	{
-		_test("ゆうしやえそさつくすぶきにたびするすいそうがくらいぶいきたい");
+		_test("ゆうしやえそさつくすぶきにたびするすいそうがくらいぶいきたい", false);
 	}
 
-	public void test4()
+	public void _test4()
 	{
-		_test("おおゆうしやえそとらくえすいそうはくにてさつくすぶきにたびたつ");
+		_test("おおゆうしやえそとらくえすいそうはくにてさつくすぶきにたびたつ", false);
 	}
 
-	public void test5()
+	public void _test5()
 	{
-		_test("ゆうしやえそさつくすぶきにたびたつすいそうがくらいぶへいこう");
+		_test("ゆうしやえそさつくすぶきにたびたつすいそうがくらいぶへいこう", false);
 	}
 
-	public void test6()
+	public void _test6()
 	{
-		_test("おおゆうしやえそさつくすぶきにたびするすいそうがくらいぶいくぜ");
+		_test("おおゆうしやえそさつくすぶきにたびするすいそうがくらいぶいくぜ", false);
 	}
 
-	public void test7()
+	public void _test7()
 	{
-		_test("それゆけとらくえすいそうがくがつきぶきにたびたてゆうしやたちらいぶいくわ");
+		_test("それゆけとらくえすいそうがくがつきぶきにたびたてゆうしやたちらいぶいくわ", false);
 	}
 
-	public void test8()
+	public void _test8()
 	{
-		_test("おおとらくえすいそう");
+		_test("おおとらくえすいそう", false);
 	}
 }

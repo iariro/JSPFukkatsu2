@@ -20,15 +20,15 @@ public class GenerateJumonTestCore
 	{
 	}
 
-	protected void _test(String phrase)
+	protected void _test(String phrase, boolean enableSamarutoria)
 	{
 		ArrayList<String> phrases = new ArrayList<>();
 		phrases.add(phrase);
-		ArrayList<String> jumonList = JumonGenerator.generateWithExtraCharacter(phrases);
+		ArrayList<Jumon> jumonList = JumonGenerator.generateWithExtraCharacter(phrases, enableSamarutoria);
 
-		for (String jumon : jumonList)
+		for (Jumon jumon : jumonList)
 		{
-			System.out.println(jumon);
+			System.out.println(jumon.getJumonStringNoReturn());
 		}
 	}
 

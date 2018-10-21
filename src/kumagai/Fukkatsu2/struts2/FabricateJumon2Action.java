@@ -34,10 +34,9 @@ public class FabricateJumon2Action
 		throws Exception
 	{
 		ArrayList<String> phrases = new WordPatternGenerator2(words.split("\n"));
-		ArrayList<String> jumonList = JumonGenerator.generateWithExtraCharacter(phrases);
-		for (String jumon : jumonList)
+		ArrayList<Jumon> jumonList = JumonGenerator.generateWithExtraCharacter(phrases, false);
+		for (Jumon jumon2 : jumonList)
 		{
-			Jumon jumon2 = new Jumon(jumon);
 			CompressedGameDataBitArray compressedGameDataBitArray = new CompressedGameDataBitArray(jumon2.getPlainArray());
 			ExtendedGameDataBitArray extendedGameDataBitArray = new ExtendedGameDataBitArray(compressedGameDataBitArray);
 			GameData gameData = new GameData(extendedGameDataBitArray);
