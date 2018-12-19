@@ -619,6 +619,63 @@ public class ExtendedGameDataBitArray
 	}
 
 	/**
+	 * サマルトリアの王子をいることに、またアイテムの不正を修正する
+	 */
+	public void setSamarutoriaEnable()
+		throws InvalidItemException, InvalidJumonException
+	{
+		int offset = 72;
+
+		for (int i=0 ; i<3 ; i++)
+		{
+			int itemCount = getAsInt(offset + 20, 4);
+
+			for (int j=0 ; j<itemCount ; j++)
+			{
+				int index = getAsInt(offset + 7 * j, 7);
+
+				if (index >= 1 && index <= 0x80 &&
+					(index % 0x40 >= 1) && (index % 0x40 <= 0x3f))
+				{
+					// アイテムの値は正しい。
+
+					ItemAndEquipment item = new ItemAndEquipment(index);
+					if (!(item.item.itemKind > 0 &&
+						((i == 0 && item.item.ローレシア王子装備可) ||
+						 (i == 1 && item.item.サマルトリア王子装備可) ||
+						 (i == 2 && item.item.ムーンブルク王女装備可))))
+					{
+						// 装備できないアイテム。
+
+						setInt(offset + 7 + i, index & 0x3f, 6, 0);
+					}
+				}
+			}
+
+			offset += 20 + 4 + 7 * itemCount;
+			if (i == 1)
+			{
+				if (!get(offset))
+				{
+					// ２人目いない。
+
+					set(offset, true);
+				}
+			}
+			else if (i == 2)
+			{
+				if (get(offset))
+				{
+					// ３人目いる。
+
+					set(offset, false);
+				}
+			}
+			offset++;
+		}
+	}
+
+	/**
 	 * 余剰ビット有無判定。
 	 * @return true=余剰ビットあり／false=なし
 	 */

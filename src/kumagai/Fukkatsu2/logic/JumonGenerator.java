@@ -10,12 +10,13 @@ public class JumonGenerator
 	/**
 	 * 指定の文字列に余計な文字を追加して復活の呪文生成を試みる。
 	 * @param phrases 元となるフレーズ
+	 * @param enableSamarutoria true=サマルトリアの王子を有効にする
 	 */
-	static public ArrayList<String> generateWithExtraCharacter(ArrayList<String> phrases)
+	static public ArrayList<Jumon> generateWithExtraCharacter(ArrayList<String> phrases, boolean enableSamarutoria)
 	{
 		int countError = 0;
 		boolean loop = true;
-		ArrayList<String> jumonList = new ArrayList<>();
+		ArrayList<Jumon> jumonList = new ArrayList<>();
 
 		for (int j=0 ; j<phrases.size() ; j++)
 		{
@@ -27,6 +28,8 @@ public class JumonGenerator
 
 				do
 				{
+					phrase += Jumon.characterSet[i];
+
 					try
 					{
 						Jumon jumon = new Jumon(phrase);
@@ -36,6 +39,12 @@ public class JumonGenerator
 
 						ExtendedGameDataBitArray extended =
 							new ExtendedGameDataBitArray(compressed);
+
+						if (enableSamarutoria)
+						{
+							extended.setSamarutoriaEnable();
+							compressed = new CompressedGameDataBitArray(extended);
+						}
 
 						String namecheck = extended.isValidローレシアの王子の名前();
 
@@ -60,7 +69,11 @@ public class JumonGenerator
 									{
 										// 端数OK。
 
-										jumonList.add(jumon.getJumonStringOnly());
+										if (enableSamarutoria)
+										{
+											jumon = new Jumon(compressed.getJumonCode());
+										}
+										jumonList.add(jumon);
 									}
 								}
 							}
@@ -70,8 +83,6 @@ public class JumonGenerator
 					{
 					}
 
-					phrase += Jumon.characterSet[i];
-
 					if (countError >= 20)
 					{
 						// エラーは２０件を超えた。
@@ -79,7 +90,7 @@ public class JumonGenerator
 						loop = false;
 					}
 				}
-				while (phrase.length() <= 52 && loop);
+				while (phrase.length() < 52 && loop);
 			}
 		}
 
