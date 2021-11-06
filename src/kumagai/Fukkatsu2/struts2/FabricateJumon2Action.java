@@ -33,7 +33,7 @@ public class FabricateJumon2Action
 	public String execute()
 		throws Exception
 	{
-		ArrayList<String> phrases = new WordPatternGenerator2(words.split("\n"));
+		ArrayList<String> phrases = new WordPatternGenerator2(words.split("\r\n"));
 		ArrayList<Jumon> jumonList = JumonGenerator.generateWithExtraCharacter(phrases, false);
 		for (Jumon jumon2 : jumonList)
 		{

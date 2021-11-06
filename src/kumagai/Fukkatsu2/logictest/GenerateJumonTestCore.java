@@ -12,6 +12,7 @@ import kumagai.Fukkatsu2.logic.InvalidItemException;
 import kumagai.Fukkatsu2.logic.InvalidJumonException;
 import kumagai.Fukkatsu2.logic.Jumon;
 import kumagai.Fukkatsu2.logic.JumonGenerator;
+import kumagai.Fukkatsu2.logic.WordPatternGenerator2;
 
 public class GenerateJumonTestCore
 	extends TestCase
@@ -20,16 +21,17 @@ public class GenerateJumonTestCore
 	{
 	}
 
-	protected void _test(String phrase, boolean enableSamarutoria)
+	protected String [] generate(String ... words)
 	{
-		ArrayList<String> phrases = new ArrayList<>();
-		phrases.add(phrase);
-		ArrayList<Jumon> jumonList = JumonGenerator.generateWithExtraCharacter(phrases, enableSamarutoria);
+		ArrayList<String> phrases = new WordPatternGenerator2(words);
+		ArrayList<Jumon> jumonList = JumonGenerator.generateWithExtraCharacter(phrases, false);
 
-		for (Jumon jumon : jumonList)
+		ArrayList<String> returnStringList = new ArrayList<>();
+		for ( Jumon jumon : jumonList)
 		{
-			System.out.println(jumon.getJumonStringNoReturn());
+			returnStringList.add(jumon.getJumonStringNoReturn());
 		}
+		return returnStringList.toArray(new String []{});
 	}
 
 	protected void generateInline(String phrase0)

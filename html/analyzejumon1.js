@@ -88,6 +88,7 @@ window.onload = function()
 		option.innerHTML = jumonString[i][0];
 		select.appendChild(option);
 	}
+	setJumon();
 };
 
 function setJumon()
@@ -96,7 +97,7 @@ function setJumon()
 	{
 		if (document.samplejumon.jumonkind.options[i].selected)
 		{
-			document.jumon.jumon.value = jumonString[i][1];
+			document.jumon.words.value = jumonString[i][1];
 			break;
 		}
 	}
