@@ -18,10 +18,15 @@
 			<h2>呪文</h2>
 			<s:iterator value="jumonList">
 				<h3>呪文</h3>
+				<ul>
 				<s:iterator value="key">
 					<s:property /><br>
 				</s:iterator>
+				</ul>
+				<h3>ローレシアの王子</h3>
+				<ul>
 				<s:property value="%{value.ローレシアの王子の名前}" /><br>
+				</ul>
 			</s:iterator>
 
 		</div>

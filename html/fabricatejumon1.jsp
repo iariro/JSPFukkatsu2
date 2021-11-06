@@ -6,7 +6,7 @@
 	<head>
 		<title>ドラゴンクエストII 復活の呪文</title>
 		<link rel="stylesheet" type="text/css" href="hatena.css">
-		<script src="analyzejumon1.js"></script>
+		<script src="fabricatejumon1.js"></script>
 	</head>
 
 	<body>
