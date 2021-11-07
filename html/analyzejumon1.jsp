@@ -23,7 +23,7 @@
 			</form>
 			ふっかつのじゅもんを　いれてください<br>
 			<s:form name="jumon" action="analyzejumon2" theme="simple">
-				<s:textarea name="jumon" rows="5" cols="30" />
+				<s:textarea name="words" rows="5" cols="30" />
 				<br>
 				<s:submit value="解析" />
 			</s:form>
