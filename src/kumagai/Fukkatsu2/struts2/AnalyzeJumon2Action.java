@@ -25,7 +25,7 @@ import kumagai.Fukkatsu2.logic.SavePoint;
 })
 public class AnalyzeJumon2Action
 {
-	public String jumon;
+	public String words;
 
 	public String [] jumonLines;
 	public String hexdata;
@@ -62,7 +62,7 @@ public class AnalyzeJumon2Action
 
 		try
 		{
-			Jumon jumon = new Jumon(this.jumon);
+			Jumon jumon = new Jumon(this.words);
 
 			jumonLines = jumon.getJumonStringOnly().split("\r\n");
 
@@ -89,7 +89,7 @@ public class AnalyzeJumon2Action
 		catch (Exception exception)
 		{
 			this.exception = exception;
-			this.jumonLines = this.jumon.split("\r\n");
+			this.jumonLines = this.words.split("\r\n");
 
 			return "error";
 		}
